@@ -17,19 +17,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userPictureOnly: boolean = false;
   user: any;
 
+  // Disable themes besides coporate and dark
   themes = [
-    {
-      value: 'default',
-      name: 'Light',
-    },
+    // {
+    //   value: 'default',
+    //   name: 'Light',
+    // },
     {
       value: 'dark',
       name: 'Dark',
     },
-    {
-      value: 'cosmic',
-      name: 'Cosmic',
-    },
+    // {
+    //   value: 'cosmic',
+    //   name: 'Cosmic',
+    // },
     {
       value: 'corporate',
       name: 'Corporate',
@@ -49,12 +50,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    // Sets the current theme
+    // TODO: Set based off of api call
     this.currentTheme = this.themeService.currentTheme;
 
+    // Api call to retreive user
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
+      .subscribe((users: any) => { this.user = users.jack; console.log(users); });
 
+    // TODO: Look into this further
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
@@ -63,12 +69,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
       )
       .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
 
+    // Theme changer 
+    // TODO: Create user preferences based off of this
     this.themeService.onThemeChange()
       .pipe(
         map(({ name }) => name),
         takeUntil(this.destroy$),
       )
-      .subscribe(themeName => this.currentTheme = themeName);
+      .subscribe(themeName => { this.currentTheme = themeName; /*console.log(themeName);*/ });
   }
 
   ngOnDestroy() {

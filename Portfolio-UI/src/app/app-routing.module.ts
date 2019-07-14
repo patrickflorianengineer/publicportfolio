@@ -12,6 +12,8 @@ import {
 const routes: Routes = [
   {
     path: 'pages',
+    // VS Code (I believe) isn't finding the path correctly, ignoring error manually below
+    // @ts-ignore 
     loadChildren: () => import('app/pages/pages.module')
       .then(m => m.PagesModule),
   },
