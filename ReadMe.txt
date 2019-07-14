@@ -1,0 +1,1 @@
+Application built using Angular + ASP.NET Core 2 + Entity Framework s+ MySQL application on Digital Ocean's Ubuntu droplet.
