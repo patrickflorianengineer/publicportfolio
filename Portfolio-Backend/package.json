@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-backend",
+  "version": "1.0.0",
+  "description": "Node JS with Mongo DB",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Patrick Florian",
+  "license": "MIT ",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
